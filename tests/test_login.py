@@ -6,7 +6,8 @@ import tests.constants as const
 class TestLogIn(BaseClass):
     def test_login(self):
         home_page = HomePage(self.driver)
-        signup_login_page = home_page.load_signup_login_page(const.SIGNUP_LOGIN_URL)
+        signup_login_page = home_page.load_signup_login_page(
+            const.SIGNUP_LOGIN_URL)
 
         # Prompt for email and password inputs
         email = input('Enter your email: ')
@@ -23,4 +24,13 @@ class TestLogIn(BaseClass):
             cookies_helper.save_cookies(self.driver)
         
     def test_login_with_cookies(self):
-        print('Testing login with cookies')
+        home_page = HomePage(self.driver)
+        signup_login_page = home_page.load_signup_login_page(
+            const.SIGNUP_LOGIN_URL)
+        
+        # Log in with cookies
+        cookies_helper.load_cookies(self.driver)
+        self.driver.refresh()
+        # Check for successful login
+        login_successful = signup_login_page.confirm_successful_signup_or_login()
+        assert login_successful == True, 'Account log-in has failed!'
