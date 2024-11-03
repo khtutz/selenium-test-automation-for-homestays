@@ -12,6 +12,7 @@ def decrypt_password(key, encrypted_password):
         encrypted_password.encode()).decode()
     return decrypted_password
 
+# Get default password from env file
 def get_password():
     if not key or not encrypted_password:
         raise ValueError('Encryption key or encrypted password '\

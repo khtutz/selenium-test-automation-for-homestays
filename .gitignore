@@ -1,3 +1,4 @@
 .env
 tasks.txt
 .pytest_cache/
+cookies/
